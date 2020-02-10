@@ -45,3 +45,7 @@ let src = "my_file.mp3";
 
 - Better theming/styling access
 - Sizing
+
+# Links
+[npm](https://www.npmjs.com/package/svelte-audio-controls)
+[github](https://github.com/Linkcube/svelte-audio-controls)
