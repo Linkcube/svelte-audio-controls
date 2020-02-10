@@ -1,0 +1,37 @@
+{
+  "name": "svelte-audio-controls",
+  "svelte": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@material-ui/icons": "^4.9.1",
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "rollup": "^1.20.0",
+    "rollup-plugin-svelte": "^5.0.0",
+    "svelte": "^3.0.0"
+  },
+  "keywords": [
+    "svelte"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "description": "Audio tag wrapper with styled elements using svelte, to give the same experience across browsers.",
+  "version": "1.0.0",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Linkcube/svelte-audio-controls.git"
+  },
+  "author": "linkcube",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Linkcube/svelte-audio-controls/issues"
+  },
+  "homepage": "https://github.com/Linkcube/svelte-audio-controls#readme"
+}
