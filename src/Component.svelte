@@ -7,7 +7,7 @@
     
     export let src;
     export let audio = null;
-    export let paused;
+    export let paused = true;
     export let duration = 0;
     export let muted = false;
     export let volume = 1;
@@ -17,6 +17,7 @@
     export let barPrimaryColor = "lightblue";
     export let barSecondaryColor = "lightgray";
     export let backgroundColor = "white";
+    export let display = false;
 
     const dispatch = createEventDispatcher();
     let currentTime;
@@ -27,7 +28,6 @@
     let seekText = "";
     let seeking = false;
     let volumeSeeking = false;
-    let display = false;
     let songBar;
     let volumeBar;
 
