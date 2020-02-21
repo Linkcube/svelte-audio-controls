@@ -26,25 +26,43 @@ let src = "my_file.mp3";
 <AudioControls
 	{src}
 	display={true}
-	bind:this={controls}
-	bind:audio
-	bind:paused
-	bind:duration
-	on:play={stopOthers}
-	on:ended={playNext}
-	iconColor={$sub_text_color}
-	textColor={$sub_text_color}
-	barPrimaryColor={$highlight}
-	barSecondaryColor={$hover_color}
-	backgroundColor={$background}
 ></AudioControls>
 ```
 
 Make sure to include `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">` in your application for the icons.
 
-`controls.hide(); controls.show(); controls.audio.pause()`
-
 Recommended width is 400px to 900px
+
+Exposed Functions:
+Function | Description
+-- | --
+`show()` | Display the controls
+`hide()` | Hide the controls
+
+Exposed Events:
+Event | Description
+-- | --
+`on:play` | When the audio is played
+`on:ended` | The audio has reached the end of it's buffer
+
+Bindings:
+Name | Description
+-- | --
+`bind:audio` | Internal audio element
+`bind:paused` | The paused value of the audio
+`bind:duration` | Duration of the audio element
+`bind:muted` | Muted state of the audio element
+`bind:volume` | Volume state of the audio
+
+Optional settings:
+Param | Description | Type
+--- | --- | ---
+`inlineTooltip`| Keeps the tooltip on the controls bar rather than hovering. | Boolean
+`disableTooltip`| Disables the tooltip completely. | Boolean
+`display` | Whether to show the controls initially | Boolean
+`iconColor` `textColor` `barPrimaryColor` `barSecondaryColor` `backgroundColor` | Change the color of the elements in the controls | CSS colors
+`preload` | Preload state for the audio component | Refer to the audio element for this, e.x: `"metadata"`
+
 
 # Todo
 
