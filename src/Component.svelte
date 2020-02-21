@@ -20,7 +20,7 @@
     export let display = false;
 
     const dispatch = createEventDispatcher();
-    let currentTime;
+    let currentTime = 0;
     let tooltip;
     let tooltipX = 0;
     let tooltipY = 0;
@@ -98,6 +98,11 @@
         background-color: var(--background-color);
         padding-left: 10px;
         padding-right: 10px;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ and Edge */
+        user-select: none; /* Standard syntax */
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .control-times {

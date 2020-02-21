@@ -2,7 +2,7 @@
 
 Simple wrapper around the audio tag to provide the same gui controls across browsers, exposes some of the events/values so far as well as some styling options.
 
-Until I get a static site up with component demos: https://twitter.com/Linkcube2/status/1226616117428281344
+Demo: http://linkcube.github.io/
 
 ## Features
 
@@ -25,6 +25,7 @@ This part is going to be fairly rough until I figure out a standard for themeing
 let src = "my_file.mp3";
 <AudioControls
 	{src}
+	display={true}
 	bind:this={controls}
 	bind:audio
 	bind:paused
@@ -39,7 +40,11 @@ let src = "my_file.mp3";
 ></AudioControls>
 ```
 
+Make sure to include `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">` in your application for the icons.
+
 `controls.hide(); controls.show(); controls.audio.pause()`
+
+Recommended width is 400px to 900px
 
 # Todo
 
