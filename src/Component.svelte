@@ -217,7 +217,11 @@
             transition:fade
             bind:this={tooltip}
             class="tooltip"
-            style="--left:{tooltipX}px; --top:{tooltipY}px; --background-color:{backgroundColor}; --box-color:{barSecondaryColor}">
+            style="--left:{tooltipX}px;
+            --top:{tooltipY}px;
+            --background-color:{backgroundColor};
+            --box-color:{barSecondaryColor};
+            --text-color:{textColor}">
             {seekText}
         </div>
     {/if}
