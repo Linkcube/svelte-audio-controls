@@ -21,7 +21,7 @@
     "dist"
   ],
   "description": "Audio tag wrapper with styled elements using svelte, to give the same experience across browsers.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {},
   "repository": {
     "type": "git",
