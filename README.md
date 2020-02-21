@@ -2,7 +2,7 @@
 
 Simple wrapper around the audio tag to provide the same gui controls across browsers, exposes some of the events/values so far as well as some styling options.
 
-Until I get a static site up with component demos: http://linkcube.github.io/
+Demo: http://linkcube.github.io/
 
 ## Features
 
