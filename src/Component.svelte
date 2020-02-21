@@ -71,8 +71,9 @@
 
     function seekTooltip(event) {
         let bounds = songBar.getBoundingClientRect();
-        tooltipX = event.pageX - bounds.left;
-        let seekValue = tooltipX * duration / bounds.width;
+        let tooltipBounds = tooltip.getBoundingClientRect();
+        tooltipX = event.pageX - tooltipBounds.width - 10;
+        let seekValue = (event.pageX - bounds.left) * duration / bounds.width;
         seekText = formatSeconds(seekValue);
         tooltipY = songBar.offsetTop + 10;
     }
