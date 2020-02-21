@@ -18,6 +18,8 @@
     export let barSecondaryColor = "lightgray";
     export let backgroundColor = "white";
     export let display = false;
+    export let inlineTooltip = false;
+    export let disableTooltip = false;
 
     const dispatch = createEventDispatcher();
     let currentTime = 0;
@@ -70,17 +72,19 @@
     }
 
     function seekTooltip(event) {
+        if (!inlineTooltip) {
+            let tooltipBounds = tooltip.getBoundingClientRect();
+            tooltipX = event.pageX - tooltipBounds.width - 10;
+            tooltipY = songBar.offsetTop + 10;
+        }
         let bounds = songBar.getBoundingClientRect();
-        let tooltipBounds = tooltip.getBoundingClientRect();
-        tooltipX = event.pageX - tooltipBounds.width - 10;
         let seekValue = (event.pageX - bounds.left) * duration / bounds.width;
         seekText = formatSeconds(seekValue);
-        tooltipY = songBar.offsetTop + 10;
     }
 
     function trackMouse(event) {
         if (seeking) seekAudio(event);
-        if (showTooltip) seekTooltip(event);
+        if (showTooltip && !disableTooltip) seekTooltip(event);
         if (volumeSeeking) seekVolume(event);
     }
 </script>
@@ -102,25 +106,32 @@
         -webkit-user-select: none; /* Safari */
         -ms-user-select: none; /* IE 10+ and Edge */
         user-select: none; /* Standard syntax */
-        margin-top: 10px;
-        margin-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     .control-times {
         margin: auto;
+        margin-right: 5px;
     }
 
     .tooltip {
-        position: absolute;
-        top: var(--top);
-        left: var(--left);
         background-color: var(--background-color);
-        padding: 3px;
+        padding: 1px;
         border-radius: 5px;
         border-width: 3px;
         box-shadow: 6px 6px var(--box-color);
         color: var(--text-color);
         pointer-events: none;
+        min-width: 50px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .hover-tooltip {
+        position: absolute;
+        top: var(--top);
+        left: var(--left);
     }
 
     .material-icons {
@@ -149,6 +160,8 @@
         border: none;
         height: 15px;
         margin: auto;
+        margin-left: 5px;
+        margin-right: 5px
     }
     
     progress::-webkit-progress-bar {background-color: var(--secondary-color); width: 100%}
@@ -158,11 +171,13 @@
     progress::-webkit-progress-value { background: var(--primary-color); }
 
     .song-progress {
-        width: 60%;
+        width: 100%;
     }
 
     .volume-progress {
         width: 10%;
+        max-width: 100px;
+        min-width: 50px;
     }
 </style>
 
@@ -211,20 +226,29 @@
             style="--primary-color:{barPrimaryColor}; --secondary-color:{barSecondaryColor}"
             class="volume-progress"
         ></progress>
+        {#if !disableTooltip && (inlineTooltip || showTooltip)}
+            <div
+                class:hover-tooltip={!inlineTooltip}
+                transition:fade
+                bind:this={tooltip}
+                class="tooltip"
+                style="--left:{tooltipX}px;
+                --top:{tooltipY}px;
+                --background-color:{backgroundColor};
+                --box-color:{barSecondaryColor};
+                --text-color:{textColor}">
+                {#if showTooltip}
+                    {seekText}
+                {:else}
+                    {#if duration > 3600}
+                        --:--:--
+                    {:else}
+                        --:--
+                    {/if}
+                {/if}
+            </div>
+        {/if}
     </div>
-    {#if showTooltip}
-        <div
-            transition:fade
-            bind:this={tooltip}
-            class="tooltip"
-            style="--left:{tooltipX}px;
-            --top:{tooltipY}px;
-            --background-color:{backgroundColor};
-            --box-color:{barSecondaryColor};
-            --text-color:{textColor}">
-            {seekText}
-        </div>
-    {/if}
 {/if}
 
 <audio
